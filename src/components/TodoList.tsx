@@ -1,11 +1,17 @@
 import { Task } from "../types/Task";
 import TaskComp from "./Task";
 
-type Props = {
+type TodoListProps = {
   tasks: Task[];
+  onDeleteTask: (taskId: number) => void
 };
-export default function TodoList({ tasks }: Props) {
-  return tasks.map((task) => {
-    return <TaskComp task={task} />;
-  });
+
+export default function TodoList({ tasks, onDeleteTask }: TodoListProps) {
+  return (
+    <div>
+      {tasks.map((task) => (
+        <TaskComp task={task} onDeleteTask={onDeleteTask}/>
+      ))}
+    </div>
+  );
 }
